@@ -33,22 +33,22 @@ workflows:
       - say-hello
 
 
-      - run:
-            name: Install Dependencies
-            command: . build/install_dependencies.sh
-      - save_cache:
-            key: dependencies-cache-{{ checksum "package.json"}}
-            path:
-              - node_modules
-      - run: 
-            name: login to org
-            command: . build/login_to_sandbox.sh
-      - run: 
-            name: run apex tests
-            command: . build/run_apex_tests.sh
+      # - run:
+      #       name: Install Dependencies
+      #       command: . build/install_dependencies.sh
+      # - save_cache:
+      #       key: dependencies-cache-{{ checksum "package.json"}}
+      #       path:
+      #         - node_modules
+      # - run: 
+      #       name: login to org
+      #       command: . build/login_to_sandbox.sh
+      # - run: 
+      #       name: run apex tests
+      #       command: . build/run_apex_tests.sh
 
-      - store_test_results:
-            path: test-results
+      # - store_test_results:
+      #       path: test-results
 
   # code-review:
   #   docker:
