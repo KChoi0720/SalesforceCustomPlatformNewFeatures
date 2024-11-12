@@ -14,7 +14,7 @@
         vfPage.setRedirect(true);
 
         if (success) {
-            System.debug('this worked!');
+            System.debug('this worked!!');
             return vfPage;
         }
         return null;
