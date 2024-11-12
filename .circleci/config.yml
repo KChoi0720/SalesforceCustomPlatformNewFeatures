@@ -11,7 +11,9 @@ jobs:
     docker:
       # Specify the version you desire here
       # See: https://circleci.com/developer/images/image/cimg/base
-      - image: cimg/base:current
+      # - image: cimg/base:current
+      - image: circleci/node:latest
+
 
     # Add steps to the job
     # See: https://circleci.com/docs/jobs-steps/#steps-overview & https://circleci.com/docs/configuration-reference/#steps
@@ -29,3 +31,28 @@ workflows:
     # Inside the workflow, you define the jobs you want to run.
     jobs:
       - say-hello
+
+
+      - run:
+            name: Install Dependencies
+            command: . build/install_dependencies.sh
+      - save_cache:
+            key: dependencies-cache-{{ checksum "package.json"}}
+            path:
+              - node_modules
+      - run: 
+            name: login to org
+            command: . build/login_to_sandbox.sh
+      - run: 
+            name: run apex tests
+            command: . build/run_apex_tests.sh
+
+      - store_test_results:
+            path: test-results
+
+  # code-review:
+  #   docker:
+  #     - image: circleci/node:latest
+  #   steps:
+  #     - checkout
+  #     - restore cache:
