@@ -2,8 +2,9 @@ on:
     push:
       branches:
         - "master"
-  name: Deploy to Salesforce Production
-  jobs:
+
+name: Deploy to Salesforce Production
+jobs:
     deploy:
       runs-on: ubuntu-latest
       steps:
@@ -43,7 +44,8 @@ on:
           uses: gfarb/sfdx-deploy@v1
           env:
             TARGET_USERNAME: jipingcui0908@gmail.com
-            SOURCE_PATH: force-app
+            SOURCE_PATH: force-app/main/default
             DESTRUCTIVE_CHANGES: destructive-changes
             TEST_LEVEL: RunLocalTests
             WAIT: 200
+
